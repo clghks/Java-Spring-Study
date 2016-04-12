@@ -18,7 +18,7 @@ public class HelloWorld extends HttpServlet {
 		PrintWriter writer = res.getWriter();
 		writer.println("<html>");
 		writer.println("<body><h1>Hello World!</h>");
-		writer.println(req.getAttribute("userId") + " <br/>");
+		writer.println(req.getSession().getAttribute("userId") + " <br/>");
 		String[] propertys = req.getParameterValues("property");
 		for (String property : propertys) {
 			writer.println(property + " <br/>");

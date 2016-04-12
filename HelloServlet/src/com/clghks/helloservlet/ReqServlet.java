@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ReqServlet extends HttpServlet{
 	
@@ -54,13 +55,15 @@ public class ReqServlet extends HttpServlet{
 //		dispatcher.forward(req, resp);
 		
 //		값을 추가해서 전달 할때
-		req.setAttribute("userId", "clghks");
+//		req.setAttribute("userId", "clghks");
 		
+//		세션 사용 하기
+		HttpSession session = req.getSession();
+		session.setAttribute("userId", "userId");
+
 //		Requset에서도 dispatcher를 가져 올 수 있다. (위에 코드랑 차이가 없다???) 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/HelloWorld");
 		dispatcher.forward(req, resp);
-		
-		
 	}
 	
 }
