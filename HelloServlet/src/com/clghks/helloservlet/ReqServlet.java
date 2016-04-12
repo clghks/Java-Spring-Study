@@ -44,8 +44,6 @@ public class ReqServlet extends HttpServlet{
 		writer.println("ip : " + req.getRemoteAddr());
 		writer.println(getServletConfig().getInitParameter("msg") + ", " + getServletConfig().getInitParameter("msg1"));
 
-		writer.println("</body>");
-		writer.print("</html>");
 		
 //		요청이 사라진다 (다른 곳으로 보낼때)
 //		resp.sendRedirect("http://www.naver.com");
@@ -66,8 +64,18 @@ public class ReqServlet extends HttpServlet{
 //		dispatcher.forward(req, resp);
 
 //		Requset에서도 dispatcher를 가져 올 수 있다. (위에 코드랑 차이가 없다???) 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/HelloWorld");
-		dispatcher.forward(req, resp);
+//		RequestDispatcher dispatcher = req.getRequestDispatcher("HelloWorld");
+//		dispatcher.forward(req, resp);
+		
+//		RequestDispatcher dispatcher = req.getRequestDispatcher("HelloWorld");					상대 경로 
+//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/HelloWorld");	절대 경로 
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("HelloWorld");
+		dispatcher.include(req, resp);
+		
+		writer.println("</body>");
+		writer.print("</html>");
+
 	}
 	
 }

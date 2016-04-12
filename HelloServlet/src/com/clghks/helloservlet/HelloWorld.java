@@ -17,8 +17,9 @@ public class HelloWorld extends HttpServlet {
 //		super.service(arg0, arg1);
 		
 		PrintWriter writer = res.getWriter();
-		writer.println("<html>");
-		writer.println("<body><h1>Hello World!</h1><br/>");
+//		writer.println("<html>");
+//		writer.println("<body>");
+		writer.println("<h1>Hello World!</h1><br/>");
 		writer.println("sesstion : " + req.getSession().getAttribute("userId") + ", " + req.getSession().getMaxInactiveInterval() + " <br/>");
 
 		ServletContext context = getServletContext();
@@ -33,8 +34,8 @@ public class HelloWorld extends HttpServlet {
 			writer.println(property + " <br/>");
 		}
 		
-		writer.println("</body>");
-		writer.print("</html>");
+//		writer.println("</body>");
+//		writer.print("</html>");
 	}
 	
 }
