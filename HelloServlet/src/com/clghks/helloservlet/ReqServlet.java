@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +44,23 @@ public class ReqServlet extends HttpServlet{
 		
 		writer.println("</body>");
 		writer.print("</html>");
+		
+//		요청이 사라진다 (다른 곳으로 보낼때)
+//		resp.sendRedirect("http://www.naver.com");
+
+//		다른 곳으로 요청을 보낸다 (요청을 재사용할수 있다?)
+//		ServletContext context = getServletContext();
+//		RequestDispatcher dispatcher = context.getRequestDispatcher("/HelloWorld");
+//		dispatcher.forward(req, resp);
+		
+//		값을 추가해서 전달 할때
+		req.setAttribute("userId", "clghks");
+		
+//		Requset에서도 dispatcher를 가져 올 수 있다. (위에 코드랑 차이가 없다???) 
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/HelloWorld");
+		dispatcher.forward(req, resp);
+		
+		
 	}
 	
 }
