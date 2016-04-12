@@ -18,10 +18,20 @@
   	<servlet-class>com.clghks.helloservlet.HelloWorld</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>ReqServlet</servlet-name>
+  	<servlet-class>com.clghks.helloservlet.ReqServlet</servlet-class>
+  </servlet>
+  
   <!-- 웹 URL 요청시 등록된 서블릿을 매핑해준다 -->
   <servlet-mapping>
   	<servlet-name>HelloWorld</servlet-name>
   	<url-pattern>/HelloWorld</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ReqServlet</servlet-name>
+  	<url-pattern>/reqServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
