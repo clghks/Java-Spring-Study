@@ -35,9 +35,10 @@ public class ReqServlet extends HttpServlet{
 		Enumeration<String> hedars = req.getHeaderNames();
 		while(hedars.hasMoreElements()){
 			String hederName = hedars.nextElement();
-			writer.println(hederName + "<br/>");
+			writer.println(hederName + " : ");
 			writer.println(req.getHeader(hederName) + "<br/>");
 		}
+		writer.println("ip : " + req.getRemoteAddr());
 		
 		writer.println("</body>");
 		writer.print("</html>");
