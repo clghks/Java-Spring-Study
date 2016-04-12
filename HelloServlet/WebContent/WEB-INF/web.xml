@@ -16,6 +16,15 @@
   <servlet>
   	<servlet-name>HelloWorld</servlet-name>
   	<servlet-class>com.clghks.helloservlet.HelloWorld</servlet-class>
+  	<!-- 서블릿에서 사용할 값 추가 -->
+  	<init-param>
+  		<param-name>msg</param-name>
+  		<param-value>Hello</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>msg1</param-name>
+  		<param-value>Hello1</param-value>
+  	</init-param>
   </servlet>
   
   <servlet>
@@ -33,5 +42,17 @@
   	<servlet-name>ReqServlet</servlet-name>
   	<url-pattern>/reqServlet</url-pattern>
   </servlet-mapping>
+  
+  
+  <!-- App에서 사용할 값 추가 -->
+  <context-param>
+  	<param-name>msg2</param-name>
+  	<param-value>Hello2</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>msg3</param-name>
+  	<param-value>Hello3</param-value>
+  </context-param>
   
 </web-app>

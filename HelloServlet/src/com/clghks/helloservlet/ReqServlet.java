@@ -42,24 +42,28 @@ public class ReqServlet extends HttpServlet{
 			writer.println(req.getHeader(hederName) + "<br/>");
 		}
 		writer.println("ip : " + req.getRemoteAddr());
-		
+		writer.println(getServletConfig().getInitParameter("msg") + ", " + getServletConfig().getInitParameter("msg1"));
+
 		writer.println("</body>");
 		writer.print("</html>");
 		
 //		요청이 사라진다 (다른 곳으로 보낼때)
 //		resp.sendRedirect("http://www.naver.com");
-
-//		다른 곳으로 요청을 보낸다 (요청을 재사용할수 있다?)
-//		ServletContext context = getServletContext();
-//		RequestDispatcher dispatcher = context.getRequestDispatcher("/HelloWorld");
-//		dispatcher.forward(req, resp);
 		
 //		값을 추가해서 전달 할때
 //		req.setAttribute("userId", "clghks");
 		
 //		세션 사용 하기
 		HttpSession session = req.getSession();
-		session.setAttribute("userId", "userId");
+		session.setAttribute("userId", "clghks_sessionContext");
+
+		ServletContext context = getServletContext();
+		context.setAttribute("userId", "clghks_appContext");
+		
+//		다른 곳으로 요청을 보낸다 (요청을 재사용할수 있다?)
+//		ServletContext context = getServletContext();
+//		RequestDispatcher dispatcher = context.getRequestDispatcher("/HelloWorld");
+//		dispatcher.forward(req, resp);
 
 //		Requset에서도 dispatcher를 가져 올 수 있다. (위에 코드랑 차이가 없다???) 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/HelloWorld");
