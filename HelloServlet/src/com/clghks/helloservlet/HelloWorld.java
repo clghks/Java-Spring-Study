@@ -29,10 +29,12 @@ public class HelloWorld extends HttpServlet {
 		
 		writer.println(getServletContext().getInitParameter("msg2") + ", " + getServletContext().getInitParameter("msg3") + " <br/>");
 
-		String[] propertys = req.getParameterValues("property");
-		for (String property : propertys) {
-			writer.println(property + " <br/>");
-		}
+		writer.println(getServletContext().getAttribute("msg4") + ", " + getServletContext().getInitParameter("msg3") + " <br/>");
+
+//		String[] propertys = req.getParameterValues("property");
+//		for (String property : propertys) {
+//			writer.println(property + " <br/>");
+//		}
 		
 //		writer.println("</body>");
 //		writer.print("</html>");
