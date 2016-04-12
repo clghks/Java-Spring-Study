@@ -12,9 +12,29 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list> -->
   
-  <!-- 서블릿보다 위에 등록 되어야한다. -->
+  <!-- 
+		1. Filter
+		2. Listener
+		3. Servlet
+	-->
+  
+  <filter>
+  	<filter-name>LogFilter</filter-name>
+  	<filter-class>com.clghks.helloservlet.LogFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>LogFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Listener 서블릿보다 위에 등록 되어야한다. -->
   <listener>
   	<listener-class>com.clghks.helloservlet.InitializeListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>com.clghks.helloservlet.CheckSessionListener</listener-class>
   </listener>
   
   <!-- 서블릿 등록 -->

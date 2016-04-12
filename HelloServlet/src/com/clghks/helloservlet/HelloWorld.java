@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class HelloWorld extends HttpServlet {
 
@@ -15,6 +16,10 @@ public class HelloWorld extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //		아무 동작을 하지 않음 
 //		super.service(arg0, arg1);
+
+		// 세션을 삭제 할때 사용
+		HttpSession session = req.getSession();
+		session.invalidate();
 		
 		PrintWriter writer = res.getWriter();
 //		writer.println("<html>");
