@@ -2,6 +2,7 @@ package com.clghks.helloservlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +29,16 @@ public class ReqServlet extends HttpServlet{
 		for (String property : propertys) {
 			writer.println(property + " <br/>");
 		}
+		
+//		해더 정보 구하기 
+		writer.println("------ 해더 정보 구하기 ------<br/>");
+		Enumeration<String> hedars = req.getHeaderNames();
+		while(hedars.hasMoreElements()){
+			String hederName = hedars.nextElement();
+			writer.println(hederName + "<br/>");
+			writer.println(req.getHeader(hederName) + "<br/>");
+		}
+		
 		writer.println("</body>");
 		writer.print("</html>");
 	}
