@@ -11,9 +11,25 @@
 <body>
 	<%
 		Calendar calendar = new GregorianCalendar();
+		switch(calendar.get(Calendar.DAY_OF_WEEK)){
+			case Calendar.MONDAY:
+			%> 
+			<jsp:include page="monday.jsp">
+				<jsp:param value="shk.jpg" name="myImg"/>
+			</jsp:include>
+			<%
+				break;
+			
+			case Calendar.THURSDAY:
+			%>
+			
+			<%--flush 캐쉬를 할지 말지 --%>
+			<jsp:include page="thursday.jsp" flush="true">
+				<jsp:param value="sh.jpg" name="myImg"/>
+			</jsp:include>
+			<%
+				break;	
+		}
 	%>
-	<jsp:forward page="yoil.jsp" >
-		<jsp:param value="<%= calendar.get(Calendar.DAY_OF_WEEK) %>" name="yo"/>
-	</jsp:forward>
 </body>
 </html>

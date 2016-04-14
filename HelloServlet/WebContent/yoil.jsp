@@ -1,5 +1,3 @@
-<%@page import="java.util.GregorianCalendar"%>
-<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,10 +8,20 @@
 </head>
 <body>
 	<%
-		Calendar calendar = new GregorianCalendar();
+		int yoil = Integer.parseInt(request.getParameter("yo"));
+		switch(yoil){
+		case 1:	// 일요일
+		%>
+			<img src="shk.jpg" />
+		<%
+			break;
+			
+		case 5:
+			%>
+				<img src="sh.jpg" />
+			<%
+				break;	
+		}
 	%>
-	<jsp:forward page="yoil.jsp" >
-		<jsp:param value="<%= calendar.get(Calendar.DAY_OF_WEEK) %>" name="yo"/>
-	</jsp:forward>
 </body>
 </html>
