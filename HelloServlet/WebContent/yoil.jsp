@@ -17,9 +17,11 @@
 			break;
 			
 		case 5:
-			%>
-				<img src="sh.jpg" />
-			<%
+			out.println(session.getAttribute("userId") + " 어서오세요~");
+			out.println(application.getInitParameter("msg2"));
+		%>
+			<br/><img src="sh.jpg" height="500"/>
+		<%
 				break;	
 		}
 	%>
