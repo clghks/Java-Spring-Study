@@ -109,6 +109,16 @@
   			/WEB-INF/lib/hello.tld
   		</taglib-location>
   	</taglib>
+  	
+  	<taglib>
+  		<taglib-uri>
+  			http://www.clghks.co.kr/ageTag
+  		</taglib-uri>
+  		
+  		<taglib-location>
+  			/WEB-INF/lib/age.tld
+  		</taglib-location>
+  	</taglib>
   </jsp-config>
   
 </web-app>
