@@ -28,8 +28,6 @@ public class AgeTag implements Tag{
 	public int doStartTag() throws JspException {
 		try {
 			Calendar calendar = new GregorianCalendar();
-			calendar.setTime(new Date());
-			
 			Calendar birthDay = new GregorianCalendar();
 			birthDay.setTime(birthday);
 			
