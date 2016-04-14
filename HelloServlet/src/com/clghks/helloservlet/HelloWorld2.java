@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "HelloWorld2", urlPatterns = {"/ShowDate"})
 public class HelloWorld2 extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7223982185495920155L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
