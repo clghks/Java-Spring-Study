@@ -62,6 +62,11 @@
   	<servlet-class>com.clghks.helloservlet.SingleUpload</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>MultiUpload</servlet-name>
+  	<servlet-class>com.clghks.helloservlet.MultiUpload</servlet-class>
+  </servlet>
+  
   <!-- 웹 URL 요청시 등록된 서블릿을 매핑해준다 -->
   <servlet-mapping>
   	<servlet-name>HelloWorld</servlet-name>
@@ -76,6 +81,11 @@
   <servlet-mapping>
   	<servlet-name>SingleUpload</servlet-name>
   	<url-pattern>/SingleUpload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>MultiUpload</servlet-name>
+  	<url-pattern>/MultiUpload</url-pattern>
   </servlet-mapping>
   
   <!-- App에서 사용할 값 추가 -->
