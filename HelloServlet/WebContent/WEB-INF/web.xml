@@ -99,5 +99,16 @@
   	<param-value>Hello3</param-value>
   </context-param>
   
+  <jsp-config>
+  	<taglib>
+  		<taglib-uri>
+  			http://www.clghks.co.kr/tags
+  		</taglib-uri>
+  		
+  		<taglib-location>
+  			/WEB-INF/lib/hello.tld
+  		</taglib-location>
+  	</taglib>
+  </jsp-config>
   
 </web-app>

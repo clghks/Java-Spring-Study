@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 
+<%@ taglib uri="http://www.clghks.co.kr/tags" prefix="ora"%>
 <%@ include file="param.jsp" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,5 +28,7 @@
 	<%-- 출력? --%>
 	<h3>결과 : <%= x %></h3>
 	<h3>Test 결과 : <%=test() %> </h3>
+	
+	<h3><ora:helloTag message="안녕하세요."/></h3>
 </body>
 </html>
