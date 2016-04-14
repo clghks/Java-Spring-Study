@@ -3,9 +3,7 @@
 
 <%@ page import="java.util.*, java.io.*" %>
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
+<%-- 전역 변수 선언 --%>
+<%! int x = 0; %>
 
     
