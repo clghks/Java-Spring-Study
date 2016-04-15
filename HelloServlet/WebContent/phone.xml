@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phoneList>
+	<phone>
+		<PhoneName>아이폰입니다.</PhoneName>
+		<PhoneImage>http://techholic.co.kr/wp-content/uploads/2013/09/iPhone5s_Gld_iOS7_PRINT.jpg</PhoneImage>
+	</phone>
+	<phone>
+		<PhoneName>갤럭시입니다.</PhoneName>
+		<PhoneImage>https://farm2.staticflickr.com/1507/25080737221_dd109d20e7_b.jpg</PhoneImage>
+	</phone>
+	<phone>
+		<PhoneName>옵티머스입니다.</PhoneName>
+		<PhoneImage>http://www.hellombl.com/upload/adboard/sb1502/145648457939063_p7wa.jpg</PhoneImage>
+	</phone>
+	<phone>
+		<PhoneName>베가입니다.</PhoneName>
+		<PhoneImage>http://file.ivega.co.kr/upload/product/feature/1399510705350_30l7m0.jpg</PhoneImage>
+	</phone>
+</phoneList>

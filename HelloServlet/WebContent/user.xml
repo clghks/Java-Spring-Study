@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userlist>
+	<user>
+		<Number>1</Number>
+		<Irum>홍길동</Irum>
+	</user>
+	<user>
+		<Number>2</Number>
+		<Irum>홍리나</Irum>
+	</user>
+	<user>
+		<Number>3</Number>
+		<Irum>박정현</Irum>
+	</user>
+</userlist>
