@@ -39,7 +39,7 @@ public class ImageServlet extends HttpServlet{
 				Blob blob = resultSet.getBlob("photo");
 				InputStream inputStream = blob.getBinaryStream();
 				OutputStream outputStream = resp.getOutputStream();
-				resp.setContentType("image/jpeg");
+				resp.setContentType("application/octet-stream");
 				
 				byte[] buffer = new byte[1024];
 				int byteRead = -1;
