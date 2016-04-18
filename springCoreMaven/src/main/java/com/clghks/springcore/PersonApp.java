@@ -18,6 +18,21 @@ public class PersonApp {
 
 		Person personLee = (Person) context.getBean("lee");
 		personLee.result();
+		System.out.println();
 
+		Person phoneList = (Person) context.getBean("phoneList");
+		phoneList.result2();
+		System.out.println();
+
+		Person phoneSet = (Person) context.getBean("phoneSet");
+		phoneSet.result3();
+		System.out.println();
+
+		Person phoneMap = (Person) context.getBean("phoneMap");
+		phoneMap.result4();
+		System.out.println();
+		
+		Person phoneProperties = (Person) context.getBean("phoneProperties");
+		phoneProperties.result5();
 	}
 }

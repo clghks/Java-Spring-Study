@@ -9,7 +9,6 @@
 		<property name="price" value="890000" />
 	</bean>
 	
-	
 	<bean id="choi" class="com.clghks.springcore.Person">
 		<property name="name">
 			<value>최치환</value>
@@ -39,6 +38,76 @@
 		
 		<!-- ref는 bean 과 같이 동작 한다. -->
 		<property name="phone" ref="iphone6"/>
-	</bean>	
+	</bean>
+	
+	<bean id="phoneList" class="com.clghks.springcore.Person">
+		<property name="name">
+			<value>phoneList</value>
+		</property>
+		
+		<property name="phones">
+			<list>
+				<ref bean="iphone5s"/>
+				<ref bean="iphone6s"/>
+				<ref bean="iphone6"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="phoneSet" class="com.clghks.springcore.Person">
+		<property name="name">
+			<value>phoneSet</value>
+		</property>
+		
+		<property name="phoneSet">
+			<set>
+				<ref bean="iphone6"/>
+				<ref bean="iphone6"/>
+				<ref bean="iphone6"/>
+				<ref bean="iphone5s"/>
+				<ref bean="iphone6s"/>
+				<ref bean="iphone6"/>
+				<ref bean="g5"/>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="phoneMap" class="com.clghks.springcore.Person">
+		<property name="name">
+			<value>phoneMap</value>
+		</property>
+		
+		<property name="phoneMap">
+			<map>
+				<entry key="phone1">
+					<ref bean="iphone6"/>
+				</entry>
+				<entry key="phone2">
+					<ref bean="iphone6"/>
+				</entry>
+				<entry key="phone3">
+					<ref bean="g5"/>
+				</entry>
+				<entry key="phone4">
+					<ref bean="iphone6s"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="phoneProperties" class="com.clghks.springcore.Person">
+		<property name="name">
+			<value>phoneProperties</value>
+		</property>
+		
+		<property name="properties">
+			<props>
+				<prop key="phone1">아이폰5S</prop>
+				<prop key="phone2">아이폰6</prop>
+				<prop key="phone3">아이폰6S</prop>
+				<prop key="phone4">아이폰6S Plus</prop>
+			</props>
+		</property>
+	</bean>
 	
 </beans>
