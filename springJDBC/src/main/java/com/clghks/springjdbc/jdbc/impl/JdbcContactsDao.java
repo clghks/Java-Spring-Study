@@ -8,10 +8,12 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.clghks.springjdbc.Contact;
 import com.clghks.springjdbc.jdbc.ContactsDao;
 
+@Component("contactsDao1")
 public class JdbcContactsDao implements ContactsDao{
 
 	private JdbcTemplate jdbcTemplate;

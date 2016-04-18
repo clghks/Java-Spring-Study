@@ -6,9 +6,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.clghks.springjdbc.jdbc.ContactsDao;
 
 public class ContactApp {
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		ContactsDao contactsDao = (ContactsDao) context.getBean("contactsDao");
+		ContactsDao contactsDao = (ContactsDao) context.getBean("contactsDao1");
 		
 		for(Contact contact : contactsDao.getContactsList()){
 			System.out.println("이름 : " + contact.getFirstName() + " " + contact.getLastName());
