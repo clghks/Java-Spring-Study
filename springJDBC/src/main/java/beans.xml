@@ -8,7 +8,9 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<bean id="contactsDao" class="com.clghks.springjdbc.JdbcContactsDao">
+	<context:component-scan base-package="com.clghks.springjdbc.mapper"></context:component-scan>
+	
+	<bean id="contactsDao" class="com.clghks.springjdbc.jdbc.impl.JdbcContactsDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
@@ -20,5 +22,19 @@
 	</bean>	
 	
 	<context:property-placeholder location="jdbc.properties"/>
-
+	
+	<!-- myBatis 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.clghks.springjdbc.mapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+	<bean id="contactsDao2" class="com.clghks.springjdbc.jdbc.impl.MyBatisContactsDao">
+		<property name="contactsMapper" ref="contactsMapper" />
+	</bean>
+	
 </beans>

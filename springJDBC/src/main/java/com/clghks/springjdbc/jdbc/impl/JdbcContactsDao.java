@@ -1,4 +1,4 @@
-package com.clghks.springjdbc;
+package com.clghks.springjdbc.jdbc.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,9 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.clghks.springjdbc.Contact;
+import com.clghks.springjdbc.jdbc.ContactsDao;
 
 public class JdbcContactsDao implements ContactsDao{
 
