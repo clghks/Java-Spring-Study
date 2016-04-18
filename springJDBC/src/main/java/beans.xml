@@ -7,11 +7,12 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd 
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	<context:component-scan base-package="com.clghks.springjdbc.mapper"></context:component-scan>
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.clghks.springjdbc"></context:component-scan>
 	
 	<bean id="contactsDao" class="com.clghks.springjdbc.jdbc.impl.JdbcContactsDao">
-		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="dataSource" ref="dataSource" />  -->
 	</bean>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
@@ -29,12 +30,12 @@
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.clghks.springjdbc.mapper"></property>
+		<property name="basePackage" value="com.clghks.springjdbc"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
 	<bean id="contactsDao2" class="com.clghks.springjdbc.jdbc.impl.MyBatisContactsDao">
-		<property name="contactsMapper" ref="contactsMapper" />
+		<!-- <property name="contactsMapper" ref="contactsMapper" />  -->
 	</bean>
 	
 </beans>
