@@ -18,4 +18,15 @@ public class HelloWorldController {
 		mav.addObject("currentDate", new Date());
 		return mav;
 	}
+	
+	@RequestMapping("/hello2")
+	public ModelAndView helloworld2(){
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/helloview");
+		mav.addObject("message1", "<strong>Spring mvc</strong>");
+		mav.getModelMap().put("message2", "메시지2");
+		mav.addObject("currentDate", new Date());
+		return mav;
+	}
 }
