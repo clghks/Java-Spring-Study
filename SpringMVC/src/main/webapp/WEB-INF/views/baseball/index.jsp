@@ -8,5 +8,10 @@
 </head>
 <body>
 	<h3>프로야구팀 소개입니다.</h3>
+	
+	<a href="baseball/team?name=boston">Boston</a>
+	<a href="baseball/team?name=baltimore">Baltimore</a>
+	<a href="baseball/team?name=dodgers">Dodgers</a>
+	
 </body>
 </html>
