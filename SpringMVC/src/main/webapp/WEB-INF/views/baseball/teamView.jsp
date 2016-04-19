@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${teamName} 프로야구팀 소개입니다.</title>
+<title>${model.teamName} 프로야구팀 소개입니다.</title>
 </head>
 <body>
-	<h3>${teamName} 프로야구팀 소개입니다.</h3>
+	<h3>${model.teamName} 프로야구팀 소개입니다.</h3>
 	
 	<%
 		String teamName = request.getParameter("name");
