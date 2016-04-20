@@ -19,4 +19,9 @@ public class ContactServiceImpl implements ContactService{
 		return contactMapper.getAllContacts();
 	}
 
+	@Override
+	public void insertContact(Contact contact) {
+		contactMapper.insertContact(contact);
+	}
+
 }

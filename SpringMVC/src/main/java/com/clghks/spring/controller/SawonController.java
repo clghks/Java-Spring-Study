@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clghks.spring.dto.Contact;
 import com.clghks.spring.service.ContactService;
-import com.clghks.spring.service.impl.ContactServiceImpl;
 
 @Controller
 @RequestMapping("/Sawon")
@@ -17,13 +16,6 @@ public class SawonController {
 
 	@Autowired
 	private ContactService contactService;
-
-//	private JdbcTemplate jdbcTemplate;
-//	
-//	@Autowired
-//	public void setJdbcTemplate(DataSource dataSource) {
-//		this.jdbcTemplate = new JdbcTemplate(dataSource);
-//	}
 	
 	@RequestMapping
 	public String index(Model model){

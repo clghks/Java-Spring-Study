@@ -6,4 +6,6 @@ import com.clghks.spring.dto.Contact;
 
 public interface ContactsMapper {
 	List<Contact> getAllContacts();
+	
+	void insertContact(Contact contact);
 }

@@ -21,7 +21,7 @@
 	
 	<h1>전체 사원 명단</h1>
 	<c:forEach var="item" items="${model}">
-		<li>${item.firstName}</li>
+		<li>${item.contactId} ${item.firstName} ${item.lastName}</li>
 	</c:forEach>
 	
 	<p id="result"></p>

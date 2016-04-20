@@ -6,4 +6,6 @@ import com.clghks.spring.dto.Contact;
 
 public interface ContactService {
 	public List<Contact> getAllContacts();
+	
+	public void insertContact(Contact contact);
 }

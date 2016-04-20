@@ -6,9 +6,14 @@
 	<resultMap type="com.clghks.spring.dto.Contact" id="ContactResult">
 		<result column="first_name" property="firstName" />
 		<result column="last_name" property="lastName" />
+		<result column="contact_id" property="contactId" />
 	</resultMap>
 	
 	<select id="getAllContacts" resultMap="ContactResult">
 		SELECT * FROM contacts
 	</select>
+	
+	<insert id="insertContact" parameterType="com.clghks.spring.dto.Contact">
+		INSERT INTO contacts(last_name, first_name) VALUE (#{lastName}, #{firstName})
+	</insert>
 </mapper>

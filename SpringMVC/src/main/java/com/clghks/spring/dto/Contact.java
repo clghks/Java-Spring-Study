@@ -1,6 +1,7 @@
 package com.clghks.spring.dto;
 
 public class Contact {
+	private int contactId;
 	private String lastName;
 	private String firstName;
 	
@@ -20,4 +21,11 @@ public class Contact {
 		this.lastName = lastName;
 	}
 	
+	public int getContactId() {
+		return contactId;
+	}
+	
+	public void setContactId(int contactId) {
+		this.contactId = contactId;
+	}
 }
