@@ -2,7 +2,6 @@ package com.clghks.spring.dto;
 
 public class Contact {
 	private String lastName;
-
 	private String firstName;
 	
 	public String getFirstName() {

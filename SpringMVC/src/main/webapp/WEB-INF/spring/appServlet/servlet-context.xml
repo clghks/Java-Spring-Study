@@ -22,8 +22,6 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.clghks.spring" />
-	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="${jdbc.driverClassName}" />
 		<beans:property name="url" value="${jdbc.url}"/>
@@ -31,5 +29,17 @@
 		<beans:property name="password" value="${jdbc.password}" />
 	</beans:bean>
 	
-	<context:property-placeholder  location="classpath:jdbc.properties"/>
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- myBatis 설정 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<beans:property name="basePackage" value="com.clghks.spring.mapper"></beans:property>
+		<beans:property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></beans:property>
+	</beans:bean>
+	
+	<context:component-scan base-package="com.clghks.spring" />
 </beans:beans>
