@@ -14,6 +14,11 @@
 		<li><span id="plan" value="기획">기획</span></li>
 	</ul>
 	
+	<ul>
+		<li><span id="marketing">영업부</span></li>
+		<li><span id="newSawon">신입사원 추가</span></li>
+	</ul>
+	
 	<p id="result"></p>
 	
 	<script type="text/javascript">
@@ -22,7 +27,7 @@
 				$.ajax({
 					type: "post",
 					url: "<c:url value="/json/jsonOut" />",
-					data: {"cd": $(this).attr("cd")},
+					data: {"cd": $(this).attr("value")},
 					dataType: "json",
 					success: function(data){
 						var html = "<ul>";
@@ -36,6 +41,27 @@
 					},
 					errer: function(xhr, status, err){
 						alert(err);
+					}
+				})
+			});
+			
+			$("#newSawon").click(function(){
+				var datas = {
+					cd:"영업",
+					name:"김태희"
+				};
+				$.ajax({
+					type: "POST",
+					url: "<c:url value="/json/jsonIn" />",
+					contentType: "application/json;charset=UTF-8",
+					data : '{"cd":"영업부", "name":"김태희"}',
+					dataType: "html",
+					success: function(data){
+						$("#result").empty();
+						$("#result").append(data);
+					},
+					error: function(xhr, status, error){
+						alert(error);
 					}
 				})
 			});
