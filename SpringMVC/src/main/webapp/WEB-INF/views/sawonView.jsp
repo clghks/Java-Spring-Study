@@ -19,6 +19,11 @@
 		<li><span id="newSawon">신입사원 추가</span></li>
 	</ul>
 	
+	<h1>전체 사원 명단</h1>
+	<c:forEach var="item" items="${model}">
+		<li>${item.first_name}</li>
+	</c:forEach>
+	
 	<p id="result"></p>
 	
 	<script type="text/javascript">
