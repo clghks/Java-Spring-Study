@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.clghks.restaurant.mapper.ReviewMapper">
+	<resultMap type="com.clghks.restaurant.dto.Restaurant" id="RestaurantResult">
+		<result column="restaurant_name" property="resturantName" />
+		<result column="Lat" property="lat" />
+		<result column="lon" property="lon" />
+		<result column="Pr" property="pr" />
+		<result column="Image" property="image" />
+		
+	</resultMap>
+	
+	<select id="getRestaurantList" resultMap="RestaurantResult">
+		SELECT * FROM restaurant
+	</select>
+	
+	<insert id="insertRestaurant" parameterType="com.clghks.restaurant.dto.Restaurant">
+		INSERT INTO restaurant(restaurant_name, Lat, lon, Pr, Image) VALUE (#{resturantName}, #{lat}, #{lon}, #{pr}, #{image})
+	</insert>
+		
+</mapper>

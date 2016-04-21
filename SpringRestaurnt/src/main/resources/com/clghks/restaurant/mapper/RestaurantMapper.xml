@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.clghks.restaurant.mapper.RestaurantMapper">
+	<resultMap type="com.clghks.restaurant.dto.Restaurant" id="RestaurantResult">
+		<result column="Restaurant_id" property="resturantId" />
+		<result column="restaurant_name" property="resturantName" />
+		<result column="Lat" property="lat" />
+		<result column="lon" property="lon" />
+		<result column="Pr" property="pr" />
+		<result column="Image" property="image" />
+		
+	</resultMap>
+	
+	<select id="getRestaurantList" resultMap="RestaurantResult">
+		SELECT 
+			* 
+		FROM 
+			restaurant 
+		LIMIT 
+			#{startIdx}, #{pageCount}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			restaurant
+	</select>
+	
+	<insert id="insertRestaurant" parameterType="com.clghks.restaurant.dto.Restaurant">
+		INSERT INTO 
+			restaurant(restaurant_name, Lat, lon, Pr, Image) 
+		VALUE 
+			(#{resturantName}, #{lat}, #{lon}, #{pr}, #{image})
+	</insert>
+	
+	<update id="updateRestaurant" parameterType="com.clghks.restaurant.dto.Restaurant">
+		UPDATE
+			restaurant
+		SET 
+			restaurant_name=#{resturantName}, Lat=#{lat}, lon=#{lon}, Pr=#{pr}, Image=#{image}
+		WHERE 
+			Restaurant_id=#{resturantId};
+	</update>
+	
+	<delete id="deleteRestaurant" parameterType="com.clghks.restaurant.dto.Restaurant">
+		DELETE FROM 
+			restaurant
+		WHERE 
+			Restaurant_id=#{resturantId};
+	</delete>
+		
+</mapper>
