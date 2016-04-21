@@ -10,4 +10,5 @@ public interface RestaurantService {
 	public void insertRestaurant(Restaurant restaurant);
 	public void updateRestaurant(Restaurant restaurant);
 	public void deleteRestaurant(int restaurantId);
+	public Restaurant getRestaurantById(int restaurantId);
 }

@@ -22,6 +22,15 @@
 			#{startIdx}, #{pageCount}
 	</select>
 	
+	<select id="getRestaurantById" resultMap="RestaurantResult">
+		SELECT 
+			* 
+		FROM 
+			restaurant 
+		WHERE 
+			Restaurant_id=#{resturantId};
+	</select>
+	
 	<select id="getCount" resultType="int">
 		SELECT
 			count(*)

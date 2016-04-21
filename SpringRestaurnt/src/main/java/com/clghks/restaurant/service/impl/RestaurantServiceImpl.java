@@ -40,4 +40,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 		restaurantMapper.deleteRestaurant(restaurantId);
 	}
 
+	@Override
+	public Restaurant getRestaurantById(int restaurantId) {
+		return restaurantMapper.getRestaurantById(restaurantId);
+	}
+
 }

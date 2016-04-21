@@ -20,11 +20,13 @@
 		<p>
 			<form:label path="lat">위도 : </form:label>
 			<form:input path="lat"/>
+			<form:errors path="lat"></form:errors>
 		</p>
 		
 		<p>
 			<form:label path="lon">경도 : </form:label>
 			<form:input path="lon"/>
+			<form:errors path="lon"></form:errors>
 		</p>
 		
 		<p>

@@ -23,6 +23,12 @@ public interface RestaurantMapper {
 	 */
 	public List<Restaurant> getRestaurantList(@Param("startIdx") int startIdx, @Param("pageCount") int pageCount);
 
+	/**
+	 * 식당 정보를 가져 온다.
+	 * @param restaurantId
+	 * @return
+	 */
+	public Restaurant getRestaurantById(int restaurantId);
 	
 	/**
 	 * 모든 식당의 갯수를 가져온다
