@@ -61,9 +61,11 @@ public class RestaurantController {
 	public byte[] getImage(@RequestParam("id") int restaurantId, HttpServletResponse httpServletResponse) throws IOException{
 		Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
 		if(restaurant.getImage() == null){
+			// Java 7 이상
 			File file = new File("/Users/chihwan/Documents/java_spring_study/upload/fegvsdfv.jpg");
 			return Files.readAllBytes(file.toPath());
-		}else{			
+		}else{
+			httpServletResponse.setCharacterEncoding("UTF-8");
 			httpServletResponse.setContentLength(restaurant.getImage().length);
 			httpServletResponse.setContentType("image/png");
 			
