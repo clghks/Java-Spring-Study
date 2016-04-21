@@ -4,6 +4,8 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -56,10 +58,11 @@ public class RestaurantController {
 	
 	@RequestMapping("/getImage")
 	@ResponseBody
-	public byte[] getImage(@RequestParam("id") int restaurantId, HttpServletResponse httpServletResponse){
+	public byte[] getImage(@RequestParam("id") int restaurantId, HttpServletResponse httpServletResponse) throws IOException{
 		Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
 		if(restaurant.getImage() == null){
-			return getDefaultImage();
+			File file = new File("/Users/chihwan/Documents/java_spring_study/upload/fegvsdfv.jpg");
+			return Files.readAllBytes(file.toPath());
 		}else{			
 			httpServletResponse.setContentLength(restaurant.getImage().length);
 			httpServletResponse.setContentType("image/png");
@@ -132,27 +135,40 @@ public class RestaurantController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/update")
-	public String update(){
-		List<Restaurant> restaurants = restaurantService.getRestaurantList(0, 10);
+	@RequestMapping(value="/update", method=RequestMethod.GET)
+	public void update(@RequestParam("id") int restaurantId, Model model){
+		Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+		model.addAttribute("restaurant", restaurant);
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public ModelAndView update(@ModelAttribute("restaurant") Restaurant restaurant, MultipartFile file, BindingResult bindingResult){
+		ModelAndView modelAndView = new ModelAndView("/restaurant/updateok");
+		if(!file.getOriginalFilename().isEmpty() && !file.isEmpty()){
+			try {
+				File uploadFile = new File("/Users/chihwan/Documents/java_spring_study/upload/", file.getOriginalFilename());
+				file.transferTo(uploadFile);
+				restaurant.setImage(file.getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		Restaurant restaurant = restaurants.get(0);
-		restaurant.setResturantName("식당11010");
-		restaurant.setLat(22.00);
-		restaurant.setLon(32.2);
-		restaurant.setPr("식당1 설명");
+		if(!bindingResult.hasErrors()){
+			restaurantService.updateRestaurant(restaurant);
+		}else{
+			// 에러가 있으면 원래 화면으로 돌아감
+			modelAndView = new ModelAndView();
+			modelAndView.getModel().putAll(bindingResult.getModel());
+		}
 		
-		restaurantService.updateRestaurant(restaurant);
-		
-		return "/restaurant/index";
+		return modelAndView;
 	}
 		
 	@RequestMapping("/delete")
-	public String delete(){
-		List<Restaurant> restaurants = restaurantService.getRestaurantList(0, 10);
-		restaurantService.deleteRestaurant(restaurants.get(0).getResturantId());
-		
-		return "/restaurant/index";
+	public String delete(@RequestParam("id") int restaurantId){
+		restaurantService.deleteRestaurant(restaurantId);
+		return "redirect:/restaurant/list";
 	}
 	
 	@RequestMapping("/count")
