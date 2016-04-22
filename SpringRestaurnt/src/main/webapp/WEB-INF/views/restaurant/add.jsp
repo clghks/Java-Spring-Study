@@ -15,6 +15,7 @@
 		<p>
 			<form:label path="resturantName">레스토랑 명 : </form:label>
 			<form:input path="resturantName"/>
+			<form:errors path="resturantName"></form:errors>
 		</p>
 		
 		<p>

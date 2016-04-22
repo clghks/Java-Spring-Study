@@ -111,8 +111,17 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute("restaurant") Restaurant restaurant, MultipartFile file, BindingResult bindingResult){
+	// FileUpload 시 type에대한 오류 체크로직이 도작하지 않을 수 있음.
+	// BindingResult를 FileUpload보다 파라미터를 먼저 넣어주면 된다. 
+	public ModelAndView add(@ModelAttribute("restaurant") Restaurant restaurant, BindingResult bindingResult, MultipartFile file){
 		ModelAndView modelAndView = new ModelAndView("/restaurant/addok");
+		
+		// 필드 에러 체크
+		if(!bindingResult.hasFieldErrors("resturantName")){	//기존의 바인드된 에러 메시지가 있는지 체크
+			if(restaurant.getResturantName() == null || restaurant.getResturantName().length() == 0){
+				bindingResult.rejectValue("resturantName", "error.requied");
+			}
+		}
 		
 		// file.isEmpty() 파일이 없다는 것
 		// file.getOriginalFilename().isEmpty() 파일이름이 없는 경우?
