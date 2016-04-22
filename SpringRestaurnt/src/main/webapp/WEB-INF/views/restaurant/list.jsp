@@ -35,8 +35,6 @@
 				<th><a href="<c:url value="/restaurant/edit?id=${item.resturantId}" />">[수정]</a></th>
 				<th>
 					<form:form modelAttribute="item" method="post" action="${appUrl}/restaurant/delete?id=${item.resturantId}">
-						
-						
 						<input type="submit" value="삭제" />
 					</form:form>
 				</th>

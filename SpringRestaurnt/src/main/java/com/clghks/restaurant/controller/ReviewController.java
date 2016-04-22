@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.clghks.restaurant.dto.Restaurant;
 import com.clghks.restaurant.dto.Review;
-import com.clghks.restaurant.service.RestaurantService;
 import com.clghks.restaurant.service.ReviewServeice;
 
 @Controller
@@ -34,10 +34,12 @@ public class ReviewController {
 	public String review(@PathVariable Integer id, Model model){
 		Restaurant restaurant = reviewServeice.getRestaurantById(id);
 		Double average = reviewServeice.getAverageById(String.valueOf(id));
-		
+		int averageValue = (int) ((average == null) ? 0 : average);
+		String averageStart = starList().get(String.valueOf(averageValue));
 		List<Review> list = reviewServeice.getReviewsById(String.valueOf(id));
+		
 		model.addAttribute("restaurant", restaurant);
-		model.addAttribute("average", (average == null) ? 0 : average);
+		model.addAttribute("average", averageStart);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("startList", starList());
 		model.addAttribute("review", initReview());
@@ -46,11 +48,18 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.POST)
-	public String review(@ModelAttribute("restaurant") Review review, BindingResult bindingResult){
+	public String review(@PathVariable Integer id, @ModelAttribute("restaurant") Review review, BindingResult bindingResult){
 		if(!bindingResult.hasErrors()){
+			review.setUid("user");
 			reviewServeice.createReview(review);
 		}
-		return "redirect:/restaurant/list";
+		return "redirect:/review/" + id;
+	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST)
+	public String delete(@PathVariable Integer id, @RequestParam("rid") int rid, @RequestParam("uid") String uid){
+		reviewServeice.deleteReview(rid, uid);
+		return "redirect:/review/" + id;
 	}
 	
 	protected Map<String, String> starList(){

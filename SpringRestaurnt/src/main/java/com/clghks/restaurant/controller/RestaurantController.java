@@ -25,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.clghks.restaurant.dto.Restaurant;
 import com.clghks.restaurant.service.RestaurantService;
-import com.clghks.restaurant.service.ReviewServeice;
 
 @Controller
 @RequestMapping("/restaurant")
@@ -34,9 +33,6 @@ public class RestaurantController {
 
 	@Autowired
 	private RestaurantService restaurantService;
-	
-	@Autowired
-	private ReviewServeice reviewServeice;
 	
 	@ModelAttribute("restaurant")
 	public Restaurant initRestaurant(){

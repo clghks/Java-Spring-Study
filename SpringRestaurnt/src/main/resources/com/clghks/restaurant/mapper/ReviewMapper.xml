@@ -42,7 +42,7 @@
 		DELETE FROM 
 			review
 		WHERE 
-			Restaurant_id=#{resturantId} AND Uid = #{uid}
+			Rid=#{rid} AND Uid = #{uid}
 	</delete>
 	
 	<select id="getAverageById" resultType="java.lang.Double">

@@ -3,7 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>    
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,6 +18,7 @@
 	
 	<c:set var="newline" value="\n"></c:set>
 	<p>좌표 : ( ${restaurant.lat}, ${restaurant.lon} )</p>
+	<p>평점 : ${average}</p>
 	<p>소개말 : ${fn:replace(restaurant.pr, newline, '<br/>')}</p>
 	<hr />
 	
@@ -37,12 +40,30 @@
 		</p>
 		<input type="submit" value="쓰기">
 	</form:form>
-	
 	<hr />
-	<c:forEach var="review" items="${reviewList}">
-		평점 : ${review.rate} <br/>
-		날짜 : ${review.update} <br/>
-		${review.body} <br/>
-	</c:forEach>
+	
+	<c:set var="appUrl" value="<%= request.getContextPath() %>" />
+		<c:forEach var="review" items="${reviewList}">
+			<table>
+				<tr>
+					<th>
+						<c:forEach begin="1" end="${review.rate}">
+						★
+						</c:forEach>
+					</th>
+					<th>
+						${review.body}
+					</th>
+					<th>
+						<fmt:formatDate value="${review.update}" pattern="yyyy-MM-dd"/>
+					</th>
+					<th>
+						<form:form modelAttribute="review" method="post" action="${appUrl}/review/delete/${review.resturantId}?rid=${review.rid}&uid=${review.uid}">
+							<input type="submit" value="삭제" />
+						</form:form>
+					</th>			
+				</tr>
+			</table>
+		</c:forEach>
 </body>
 </html>
