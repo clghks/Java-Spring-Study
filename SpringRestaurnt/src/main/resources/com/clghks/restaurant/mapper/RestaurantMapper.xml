@@ -10,7 +10,6 @@
 		<result column="lon" property="lon" />
 		<result column="Pr" property="pr" />
 		<result column="Image" property="image" />
-		
 	</resultMap>
 	
 	<select id="getRestaurantList" resultMap="RestaurantResult">

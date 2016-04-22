@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.clghks.restaurant.dto.Restaurant;
 import com.clghks.restaurant.service.RestaurantService;
+import com.clghks.restaurant.service.ReviewServeice;
 
 @Controller
 @RequestMapping("/restaurant")
@@ -34,6 +34,9 @@ public class RestaurantController {
 
 	@Autowired
 	private RestaurantService restaurantService;
+	
+	@Autowired
+	private ReviewServeice reviewServeice;
 	
 	@ModelAttribute("restaurant")
 	public Restaurant initRestaurant(){

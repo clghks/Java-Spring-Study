@@ -31,10 +31,12 @@
 		<c:forEach var="item" items="${list}">
 			<tr>
 				<th><img src="<c:url value="/restaurant/getImage?id=${item.resturantId}" />" height="100"/></th>
-				<th>${item.resturantName}</th>
+				<th><a href="<c:url value="/review/${item.resturantId}" />">${item.resturantName}</a></th>
 				<th><a href="<c:url value="/restaurant/edit?id=${item.resturantId}" />">[수정]</a></th>
 				<th>
 					<form:form modelAttribute="item" method="post" action="${appUrl}/restaurant/delete?id=${item.resturantId}">
+						
+						
 						<input type="submit" value="삭제" />
 					</form:form>
 				</th>

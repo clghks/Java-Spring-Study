@@ -1,13 +1,11 @@
-package com.clghks.restaurant.mapper;
+package com.clghks.restaurant.service;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 
 import com.clghks.restaurant.dto.Restaurant;
 import com.clghks.restaurant.dto.Review;
 
-public interface ReviewMapper {
+public interface ReviewServeice {
 	/**
 	 * @param id 레스토랑 ID
 	 * @return
@@ -25,15 +23,7 @@ public interface ReviewMapper {
 	 * @param rid
 	 * @param uid
 	 */
-	public void deleteReview(@Param("rid") int rid, @Param("uid") String uid);
-	
-	/**
-	 * 식당 정보를 가져 온다.
-	 * @param restaurantId
-	 * @return
-	 */
-	public Restaurant getRestaurantById(int restaurantId);
-	
+	public void deleteReview(int rid, String uid);
 	
 	/**
 	 * 평균 평점 
@@ -41,4 +31,6 @@ public interface ReviewMapper {
 	 * @return
 	 */
 	public Double getAverageById(String id);
+	
+	public Restaurant getRestaurantById(int restaurantId);
 }

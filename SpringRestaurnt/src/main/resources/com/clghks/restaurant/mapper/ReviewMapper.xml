@@ -3,21 +3,64 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.clghks.restaurant.mapper.ReviewMapper">
+	<resultMap type="com.clghks.restaurant.dto.Review" id="reviewResult">
+		<result column="Rid" property="resturantId" />
+		<result column="Rate" property="rate" />
+		<result column="Body" property="body" />
+		<result column="Updated" property="update" />
+		<result column="Rid" property="rid" />
+		<result column="Uid" property="uid" />
+	</resultMap>
+	
 	<resultMap type="com.clghks.restaurant.dto.Restaurant" id="RestaurantResult">
+		<result column="Restaurant_id" property="resturantId" />
 		<result column="restaurant_name" property="resturantName" />
 		<result column="Lat" property="lat" />
 		<result column="lon" property="lon" />
 		<result column="Pr" property="pr" />
 		<result column="Image" property="image" />
-		
 	</resultMap>
 	
-	<select id="getRestaurantList" resultMap="RestaurantResult">
-		SELECT * FROM restaurant
+	<select id="getReviewsById" resultMap="reviewResult">
+		SELECT 
+			* 
+		FROM 
+			review
+		WHERE
+			Rid = #{id}
 	</select>
 	
-	<insert id="insertRestaurant" parameterType="com.clghks.restaurant.dto.Restaurant">
-		INSERT INTO restaurant(restaurant_name, Lat, lon, Pr, Image) VALUE (#{resturantName}, #{lat}, #{lon}, #{pr}, #{image})
+	<insert id="createReview" parameterType="com.clghks.restaurant.dto.Review">
+		INSERT INTO 
+			review(
+				Rate, Body, Updated, Rid, Uid) 
+		VALUE 
+			(#{rate}, #{body}, CURDATE(), #{rid}, #{uid})
 	</insert>
+	
+	<delete id="deleteReview">
+		DELETE FROM 
+			review
+		WHERE 
+			Restaurant_id=#{resturantId} AND Uid = #{uid}
+	</delete>
+	
+	<select id="getAverageById" resultType="java.lang.Double">
+		SELECT 
+			avg(Rate)
+		FROM 
+			review
+		WHERE
+			Rid = #{id} 
+	</select>
+	
+	<select id="getRestaurantById" resultMap="RestaurantResult">
+		SELECT 
+			* 
+		FROM 
+			restaurant 
+		WHERE 
+			Restaurant_id=#{resturantId};
+	</select>
 		
 </mapper>
