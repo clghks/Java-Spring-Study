@@ -41,20 +41,34 @@
 		<input type="submit" value="쓰기">
 	</form:form>
 	<hr />
+
 	
 	<c:set var="appUrl" value="<%= request.getContextPath() %>" />
+	<table border="1" width="100%">
+		<colgroup>
+			<col width="30%"/>
+			<col width="30%"/>
+			<col width="20%"/>
+			<col width="20%"/>
+		</colgroup>
+		<tr>
+			<th>평점</th>
+			<th>내용</th>
+			<th>날짜</th>
+			<th>삭제</th>
+		</tr>
 		<c:forEach var="review" items="${reviewList}">
-			<table>
+		
 				<tr>
-					<th>
+					<th align="left">
 						<c:forEach begin="1" end="${review.rate}">
 						★
 						</c:forEach>
 					</th>
-					<th>
+					<th align="left">
 						${review.body}
 					</th>
-					<th>
+					<th align="left">
 						<fmt:formatDate value="${review.update}" pattern="yyyy-MM-dd"/>
 					</th>
 					<th>
@@ -63,7 +77,7 @@
 						</form:form>
 					</th>			
 				</tr>
-			</table>
 		</c:forEach>
+	</table>
 </body>
 </html>
