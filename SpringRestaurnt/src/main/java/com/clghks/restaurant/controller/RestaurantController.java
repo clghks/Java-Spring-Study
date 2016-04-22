@@ -123,6 +123,21 @@ public class RestaurantController {
 			}
 		}
 		
+		if(!bindingResult.hasFieldErrors("lat")){
+			System.out.println(restaurant.getLat() > -90);
+			System.out.println(restaurant.getLat() < 90);
+
+			if(restaurant.getLat() < -90 || restaurant.getLat() > 90){
+				bindingResult.rejectValue("lat", "error.lat.value");
+			}
+		}
+		
+		if(!bindingResult.hasFieldErrors("lon")){
+			if(restaurant.getLon() < -180 || restaurant.getLon() > 180){
+				bindingResult.rejectValue("lon", "error.lon.value");
+			}
+		}
+		
 		// file.isEmpty() 파일이 없다는 것
 		// file.getOriginalFilename().isEmpty() 파일이름이 없는 경우?
 		if(!file.getOriginalFilename().isEmpty() && !file.isEmpty()){

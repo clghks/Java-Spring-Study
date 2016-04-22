@@ -15,19 +15,19 @@
 		<p>
 			<form:label path="resturantName">레스토랑 명 : </form:label>
 			<form:input path="resturantName"/>
-			<form:errors path="resturantName"></form:errors>
+			<form:errors path="resturantName" cssStyle="color:red;"></form:errors>
 		</p>
 		
 		<p>
 			<form:label path="lat">위도 : </form:label>
 			<form:input path="lat"/>
-			<form:errors path="lat"></form:errors>
+			<form:errors path="lat" cssStyle="color:red;"></form:errors>
 		</p>
 		
 		<p>
 			<form:label path="lon">경도 : </form:label>
 			<form:input path="lon"/>
-			<form:errors path="lon"></form:errors>
+			<form:errors path="lon" cssStyle="color:red;"></form:errors>
 		</p>
 		
 		<p>
