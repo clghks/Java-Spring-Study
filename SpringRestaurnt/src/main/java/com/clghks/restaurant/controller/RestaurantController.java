@@ -140,7 +140,7 @@ public class RestaurantController {
 	// FileUpload 시 type에대한 오류 체크로직이 도작하지 않을 수 있음.
 	// BindingResult를 FileUpload보다 파라미터를 먼저 넣어주면 된다. 
 	public ModelAndView add(@ModelAttribute("restaurant") Restaurant restaurant, BindingResult bindingResult, @RequestParam(value="id", required=false) Integer id, MultipartFile file, HttpServletRequest request){
-		ModelAndView modelAndView = new ModelAndView("/restaurant/addok");
+		ModelAndView modelAndView = new ModelAndView("redirect:/restaurant/list");
 		
 		// 필드 에러 체크
 		if(!bindingResult.hasFieldErrors("resturantName")){	//기존의 바인드된 에러 메시지가 있는지 체크
@@ -221,12 +221,18 @@ public class RestaurantController {
 		
 		return modelAndView;
 	}
-		
-	@RequestMapping("/delete")
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(@RequestParam("id") int restaurantId){
 		restaurantService.deleteRestaurant(restaurantId);
 		return "redirect:/restaurant/list";
 	}
+		
+//	@RequestMapping("/delete")
+//	public String delete(@RequestParam("id") int restaurantId){
+//		restaurantService.deleteRestaurant(restaurantId);
+//		return "redirect:/restaurant/list";
+//	}
 	
 	@RequestMapping("/count")
 	public String getCount(){

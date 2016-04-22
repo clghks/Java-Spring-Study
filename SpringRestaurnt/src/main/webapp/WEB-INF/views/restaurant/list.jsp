@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>    
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,12 +26,18 @@
 				<th>수정</th>
 				<th>삭제</th>
 			</tr>
+			
+			<c:set var="appUrl" value="<%= request.getContextPath() %>" />
 		<c:forEach var="item" items="${list}">
 			<tr>
 				<th><img src="<c:url value="/restaurant/getImage?id=${item.resturantId}" />" height="100"/></th>
 				<th>${item.resturantName}</th>
 				<th><a href="<c:url value="/restaurant/edit?id=${item.resturantId}" />">[수정]</a></th>
-				<th><a href="<c:url value="/restaurant/delete?id=${item.resturantId}" />">[삭제]</a></th>
+				<th>
+					<form:form modelAttribute="item" method="post" action="${appUrl}/restaurant/delete?id=${item.resturantId}">
+						<input type="submit" value="삭제" />
+					</form:form>
+				</th>
 			</tr>
 		</c:forEach>
 	</table>
