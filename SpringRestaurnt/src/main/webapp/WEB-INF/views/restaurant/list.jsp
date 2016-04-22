@@ -28,7 +28,7 @@
 			<tr>
 				<th><img src="<c:url value="/restaurant/getImage?id=${item.resturantId}" />" height="100"/></th>
 				<th>${item.resturantName}</th>
-				<th><a href="<c:url value="/restaurant/update?id=${item.resturantId}" />">[수정]</a></th>
+				<th><a href="<c:url value="/restaurant/edit?id=${item.resturantId}" />">[수정]</a></th>
 				<th><a href="<c:url value="/restaurant/delete?id=${item.resturantId}" />">[삭제]</a></th>
 			</tr>
 		</c:forEach>

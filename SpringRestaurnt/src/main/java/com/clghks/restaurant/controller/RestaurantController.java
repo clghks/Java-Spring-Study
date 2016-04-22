@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,17 +105,41 @@ public class RestaurantController {
 		return null;
 	}
 
-	// retuarn void는 /view/restaurant/add.jsp
-	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public void add(Model model){
-		Restaurant restaurant = initRestaurant();
-		model.addAttribute("restaurant", restaurant);
+//	// retuarn void는 /view/restaurant/add.jsp
+//	@RequestMapping(value={"/add", "/edit/{id}"}, method=RequestMethod.GET)
+//	public String add(Model model, @PathVariable int id, HttpServletRequest request){
+//		String uri = request.getRequestURI();
+//		if(uri != null && uri.endsWith("add")){
+//			Restaurant restaurant = initRestaurant();
+//			model.addAttribute("restaurant", restaurant);
+//			model.addAttribute("isAdd", true);
+//		}else{
+//			Restaurant restaurant = restaurantService.getRestaurantById(id);
+//			model.addAttribute("restaurant", restaurant);
+//			model.addAttribute("isAdd", false);
+//		}
+//		return "/restaurant/add";
+//	}
+	
+	@RequestMapping(value={"/add", "/edit"}, method=RequestMethod.GET)
+	public String add(Model model, @RequestParam(value="id", required=false) Integer id, HttpServletRequest request){
+		String uri = request.getRequestURI();
+		if(uri != null && uri.endsWith("add")){
+			Restaurant restaurant = initRestaurant();
+			model.addAttribute("restaurant", restaurant);
+			model.addAttribute("isAdd", true);
+		}else{
+			Restaurant restaurant = restaurantService.getRestaurantById(id);
+			model.addAttribute("restaurant", restaurant);
+			model.addAttribute("isAdd", false);
+		}
+		return "/restaurant/add";
 	}
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(value={"/add", "/edit"}, method=RequestMethod.POST)
 	// FileUpload 시 type에대한 오류 체크로직이 도작하지 않을 수 있음.
 	// BindingResult를 FileUpload보다 파라미터를 먼저 넣어주면 된다. 
-	public ModelAndView add(@ModelAttribute("restaurant") Restaurant restaurant, BindingResult bindingResult, MultipartFile file){
+	public ModelAndView add(@ModelAttribute("restaurant") Restaurant restaurant, BindingResult bindingResult, @RequestParam(value="id", required=false) Integer id, MultipartFile file, HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("/restaurant/addok");
 		
 		// 필드 에러 체크
@@ -124,9 +150,6 @@ public class RestaurantController {
 		}
 		
 		if(!bindingResult.hasFieldErrors("lat")){
-			System.out.println(restaurant.getLat() > -90);
-			System.out.println(restaurant.getLat() < 90);
-
 			if(restaurant.getLat() < -90 || restaurant.getLat() > 90){
 				bindingResult.rejectValue("lat", "error.lat.value");
 			}
@@ -142,19 +165,27 @@ public class RestaurantController {
 		// file.getOriginalFilename().isEmpty() 파일이름이 없는 경우?
 		if(!file.getOriginalFilename().isEmpty() && !file.isEmpty()){
 			try {
-				File uploadFile = new File("/Users/chihwan/Documents/java_spring_study/upload/", file.getOriginalFilename());
-				file.transferTo(uploadFile);
 				restaurant.setImage(file.getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+
+		String uri = request.getRequestURI();
 		if(!bindingResult.hasErrors()){
-			restaurantService.insertRestaurant(restaurant);
+			if(uri != null && uri.endsWith("add")){
+				restaurantService.insertRestaurant(restaurant);
+			}else{
+				restaurantService.updateRestaurant(restaurant);
+			}
 		}else{
 			// 에러가 있으면 원래 화면으로 돌아감
-			modelAndView = new ModelAndView();
+			modelAndView = new ModelAndView("/restaurant/add");
+			if(uri != null && uri.endsWith("add")){
+				modelAndView.addObject("isAdd", true);
+			}else{
+				modelAndView.addObject("isAdd", false);
+			}
 			modelAndView.getModel().putAll(bindingResult.getModel());
 		}
 		
